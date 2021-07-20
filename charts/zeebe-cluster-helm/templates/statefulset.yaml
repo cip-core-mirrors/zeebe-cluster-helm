@@ -115,12 +115,12 @@ spec:
           subPath: broker-log4j2.xml
         {{- end }}
         securityContext:
-          {{ toYaml .Values.podSecurityContext | indent 12 | trim }}
+          {{ toYaml .Values.podSecurityContext | indent 10 | trim }}
       volumes:
       - name: config
         configMap:
           name: {{ include "zeebe-cluster.fullname" . }}
-          defaultMode: 0744
+          defaultMode: 0777
       - name: exporters
         emptyDir: {}    
 {{- with .Values.nodeSelector }}
